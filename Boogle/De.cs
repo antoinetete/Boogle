@@ -26,7 +26,7 @@ namespace Boogle
             myid = lastid;
         }
 
-        public De(char[] values)
+        public De(char[] values,Random rnd)
         {
             if (values.Length == nombredeface)
             {
@@ -36,6 +36,25 @@ namespace Boogle
             }else{
                 throw new Exception("Le char de valeurs n'est pas égale au nombre de face");
             }
+            this.Lance(rnd);
+        }
+        public De(string[] values, Random rnd)
+        {
+            if (values.Length == nombredeface)
+            {
+                for(int i=0;i<_values.Length;i++){
+                    if(values[i].Length==1 && char.IsLetter(values[i][0])){
+                        _values[i] = values[i][0];
+                    }else{
+                        throw new Exception("dice data is invalide");
+                    }
+                }
+                lastid++;
+                myid = lastid;
+            }else{
+                throw new Exception("Le char de valeurs n'est pas égale au nombre de face");
+            }
+            this.Lance(rnd);
         }
 
         /// <summary>
@@ -75,7 +94,7 @@ namespace Boogle
         }
         
         public override bool Equals(object obj)
-        {
+        {   
             
             if (obj == null || GetType() != obj.GetType())
             {
@@ -83,7 +102,6 @@ namespace Boogle
             }
             
             // TODO: write your implementation of Equals() here
-            
             return base.Equals(obj);
         }
         

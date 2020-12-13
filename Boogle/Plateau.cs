@@ -1,5 +1,7 @@
-using System.Collections.Generic;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 namespace Boogle
 {
     public class Plateau
@@ -15,6 +17,25 @@ namespace Boogle
                 for( int y=0;y<size;y++){
                     this.contenu[x,y] = new De(rnd);
                 }
+            }
+        }
+        public Plateau(string path, Random rnd){
+            StreamReader thereader = null;
+            List<De> myDice = new List<De>();
+            try{
+                thereader = new StreamReader(path);
+            }catch (FileNotFoundException){
+                throw new Exception("le fichier de initilisation des Dés n'a pas été trouvé");
+            }
+            while(! thereader.EndOfStream){
+                myDice.Add(new De( thereader.ReadLine().Split(';'), rnd));
+            }
+            thereader.Close();
+            if(myDice.Count!=size*size){
+                throw new Exception("wrong amount of dice was provided");
+            }
+            for(int i=0;i<myDice.Count;i++){
+                this.contenu[i%size,i/size] = myDice[i];
             }
         }
         public override string ToString()

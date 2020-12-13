@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System;
 namespace Boogle
 {
     class Joueur
@@ -9,6 +9,9 @@ namespace Boogle
         private List<string> _found;
         private static List<string> _foundByAll = new List<string>();
 
+        public string desc{
+            get{return "-> "+_name+" "+Convert.ToString(_score);}
+        }
         public Joueur(string name)
         {
             _name = name;
@@ -60,5 +63,6 @@ namespace Boogle
             }
             return res;
         }
+        
     }
 }

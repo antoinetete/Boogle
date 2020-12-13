@@ -10,6 +10,11 @@ namespace Boogle
             Console.WriteLine(myDictionnaire.ToString());
             Console.WriteLine(myDictionnaire.RechDicoRecursif(0, myDictionnaire.Dico[3].Length-1, "AVERA"));
         }
+        static void testLoadPlateau(){
+            Random rnd = new Random(SEED);
+            Plateau myplateau = new Plateau("../Des.txt",rnd);
+            Console.WriteLine(myplateau);
+        }
         static void testPlateau(){
             Random rnd = new Random(SEED);
             Plateau myplateau = new Plateau(rnd);
@@ -36,6 +41,9 @@ namespace Boogle
         static void Main(string[] args)
         {
             testPlateau();
+            testDictionnaire();
+            testLoadPlateau();
+            new jeu("../MotsPossibles.txt","../Des.txt");
         }
     }
 }
