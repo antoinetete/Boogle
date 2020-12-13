@@ -38,12 +38,9 @@ namespace Boogle
                     for(int j=0;j<size;j++){
                         res = Test_coord(i,j,mot,0,visité);//la recurrance est ici
                         if(res){
-                            break;
+                            return res;
                         }
                     }
-                    if(res){
-                            break;
-                        }
                 }
             }
             return res;
@@ -56,7 +53,7 @@ namespace Boogle
                 if((this.contenu[i,j]==mot[index]) && (!visité.Contains(this.contenu[i,j]))){
                     visité.Add(this.contenu[i,j]);
                     if(index<(mot.Length)){//si on est pas arrivé a la fin 
-                        for(int l=-1;l<2;l++){//test all m neighbours
+                        for(int l=-1;l<2;l++){//test all my neighbours
                             for(int m=-1;m<2;m++){
                                 if((l!=0 || m!=0)&& valid(i+l,j+m)){//si dans le plateau
                                     res|= Test_coord(i+l,j+m,mot,index+1,new List<De>(visité));//must be a copy of visité otherwise confuses the stacking
