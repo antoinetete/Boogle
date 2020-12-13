@@ -7,16 +7,23 @@ namespace Boogle
         private const int nombredeface = 6;
         private char[] _values = new char[nombredeface];
         private char _selectedValue;
+        private static int lastid=0; 
+        private int myid;
         
+        public char SelectedValue{
+            get{return this._selectedValue;}
+        }
 
         /// <summary>
         /// constructeur leger pour 100%random
         /// </summary>
         public De(Random rnd){
-            for(int i=0;i<this.values.Length;i++){
+            for(int i=0;i<this._values.Length;i++){
                 this._values[i] = (char)rnd.Next('a','z');
             }
             this.Lance(rnd);
+            lastid++;
+            myid = lastid;
         }
 
         public De(char[] values)
@@ -24,6 +31,10 @@ namespace Boogle
             if (values.Length == nombredeface)
             {
                 _values = values;
+                lastid++;
+                myid = lastid;
+            }else{
+                throw new Exception("Le char de valeurs n'est pas égale au nombre de face");
             }
         }
 
@@ -50,11 +61,37 @@ namespace Boogle
             res += $"\" et la valeur affichée est {_selectedValue}";
             return res;
         }
-        public static De operator ==(De unde, char unchar){
-            return under._selectedValue == unchar;
+        public static bool operator ==(De unde, char unchar){
+            return unde._selectedValue == unchar;
         }
-        public static De operator !=(De unde, char unchar){
-            return under._selectedValue != unchar;
+        public static bool operator !=(De unde, char unchar){
+            return unde._selectedValue != unchar;
+        }
+        public static bool operator ==(De A,De B){
+            return A.myid==B.myid;
+        }
+        public static bool operator !=(De A,De B){
+            return A.myid!=B.myid;
+        }
+        
+        public override bool Equals(object obj)
+        {
+            
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            
+            // TODO: write your implementation of Equals() here
+            
+            return base.Equals(obj);
+        }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            return base.GetHashCode();
         }
     }
 }
