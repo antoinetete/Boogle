@@ -1,13 +1,19 @@
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.exe
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.deps.json
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.runtimeconfig.json
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.runtimeconfig.dev.json
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.dll
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\bin\Debug\netcoreapp3.1\Boogle.pdb
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.csprojAssemblyReference.cache
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.csproj.CoreCompileInputs.cache
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.AssemblyInfoInputs.cache
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.AssemblyInfo.cs
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.dll
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.pdb
-C:\Users\antoi\OneDrive - De Vinci\A2\S3\POO\Projet\Boogle\obj\Debug\netcoreapp3.1\Boogle.genruntimeconfig.cache
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.exe
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.deps.json
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.runtimeconfig.json
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.runtimeconfig.dev.json
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.dll
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/bin/Debug/netcoreapp3.1/Boogle.pdb
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.csprojAssemblyReference.cache
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.csproj.CoreCompileInputs.cache
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.AssemblyInfoInputs.cache
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.AssemblyInfo.cs
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.dll
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.pdb
+C:/Users/antoi/OneDrive - De Vinci/A2/S3/POO/Projet/Boogle/obj/Debug/netcoreapp3.1/Boogle.genruntimeconfig.cache
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.csprojAssemblyReference.cache
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.AssemblyInfoInputs.cache
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.AssemblyInfo.cs
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.csproj.CoreCompileInputs.cache
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.dll
+/home/orca/a2/info/boogle/Boogle/Boogle/obj/Debug/netcoreapp3.1/Boogle.pdb

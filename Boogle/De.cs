@@ -4,12 +4,24 @@ namespace Boogle
 {
     class De
     {
-        private char[] _values;
+        private const int nombredeface = 6;
+        private char[] _values = new char[nombredeface];
         private char _selectedValue;
+        
+
+        /// <summary>
+        /// constructeur leger pour 100%random
+        /// </summary>
+        public De(Random rnd){
+            for(int i=0;i<this.values.Length;i++){
+                this._values[i] = (char)rnd.Next('a','z');
+            }
+            this.Lance(rnd);
+        }
 
         public De(char[] values)
         {
-            if (values.Length == 6)
+            if (values.Length == nombredeface)
             {
                 _values = values;
             }
@@ -21,7 +33,7 @@ namespace Boogle
         /// <param name="r"></param>
         public void Lance(Random r)
         {
-            _selectedValue = _values[r.Next(7)];
+            _selectedValue = this._values[r.Next(this._values.Length)];
         }
 
         /// <summary>
@@ -37,6 +49,12 @@ namespace Boogle
             }
             res += $"\" et la valeur affichée est {_selectedValue}";
             return res;
+        }
+        public static De operator ==(De unde, char unchar){
+            return under._selectedValue == unchar;
+        }
+        public static De operator !=(De unde, char unchar){
+            return under._selectedValue != unchar;
         }
     }
 }
