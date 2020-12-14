@@ -15,36 +15,48 @@ namespace Boogle
             get { return _dico; }
         }
 
-        public int finduDico(string mot) { 
+        public int finduDico(string mot)
+        {
             return _dico[mot.Length].Length;
         }
-        
+
         public Dictionnaire(string path, string langue)
         {
-            _langue = langue;
-            _dico = new SortedList<int, string[]>();
-            string input = File.ReadAllText(path);
-            string[] dico = Regex.Split(input, @"[0-9]+");
-            int i=2;
-            foreach (string item in dico)
+            try
             {
-                if (item != "")
+                _langue = langue;
+                _dico = new SortedList<int, string[]>();
+                string input = File.ReadAllText(path);
+                string[] dico = Regex.Split(input, @"[0-9]+");
+                int i = 2;
+                foreach (string item in dico)
                 {
-                    _dico.Add(i, item.Replace("\r\n", "").Split(' '));
-                    i++;
+                    if (item != "")
+                    {
+                        _dico.Add(i, item.Replace("\r\n", "").Split(' '));
+                        i++;
+                    }
                 }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 
-        // public override string ToString()
-        // {
-        //     string res = "";
-        //     foreach (string[] tab in _dico)
-        //     {
-        //         res += $"Il y a {_dico[i].Length} mots de taille {i + 2}\n";
-        //     }
-        //     return res;
-        // }
+        public override string ToString()
+        {
+            string res = "";
+            for (int i = 2; i < _dico.Keys.Count; i++)
+            {
+                res += $"Il y a {_dico[i].Length} mots de {i} lettres\n";
+            }
+            return res;
+        }
 
         /// <summary>
         /// recherche dichotomique du mot demandé dans la liste de ceux de la meme taille

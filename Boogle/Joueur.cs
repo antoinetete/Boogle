@@ -112,6 +112,9 @@ namespace Boogle
             // TODO: write your implementation of GetHashCode() here
             return base.GetHashCode();
         }
+
+
+
         class IA : Joueur
         {
             private char[,] _plateau;
@@ -124,7 +127,10 @@ namespace Boogle
                 mots = new List<string>();
             }
 
+            
+            // private bool Contained(string mot) {
 
+            // }
         }
     }
 }
