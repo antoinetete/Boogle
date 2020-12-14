@@ -55,7 +55,7 @@ namespace Boogle
 
         public string action()
         {
-            return Console.ReadLine();
+            return Console.ReadLine().ToUpper();
         }
 
         /// <summary>

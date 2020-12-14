@@ -159,7 +159,7 @@ namespace Boogle
                 Console.ReadLine();
                 foreach(Joueur player in this.participants){
                     Console.Clear();
-                    Console.Write("C'est au tour de ");
+                    Console.Write("C'est au tour de  ");
                     Console.Write(player.Nom);
                     Console.WriteLine(" de Jouer !!");
                     Console.WriteLine("appuyez sur enter pour commencer !!");
@@ -189,6 +189,8 @@ namespace Boogle
                         Console.WriteLine(chrono.Elapsed-durrée);
                     }
                     Console.WriteLine("temps écoulé !!");
+                    Console.WriteLine("Appuyez sur entrer pour continuer");
+                    Console.ReadLine();
                 }
             }
         }
