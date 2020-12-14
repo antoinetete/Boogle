@@ -9,6 +9,7 @@ namespace Boogle
         private const int size = 4;
         private De[,] contenu = new De[size, size];
         private Random rnd = new Random();
+        private List<De> latestvisit = new List<De>();
 
         public char[,] Contenu
         {
@@ -106,6 +107,7 @@ namespace Boogle
             if (index == mot.Length)
             {
                 res = true;
+                this.latestvisit = visité;
             }
             else
             {
@@ -129,7 +131,21 @@ namespace Boogle
             }
             return res;
         }
-
+        public void disphighlighted(){
+            for (int i = 0; i < this.contenu.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.contenu.GetLength(1); j++)
+                {
+                    if(this.latestvisit.Contains(this.contenu[i,j])){
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    Console.Write(this.contenu[i,j].SelectedValue);
+                    Console.Write(" ");
+                    Console.ResetColor();
+                }
+                Console.WriteLine("");
+            }
+        }
         private bool valid(int i, int j)
         { //? should this be static ?
             return (i < size) && (j < size) && (i >= 0) && (j >= 0);

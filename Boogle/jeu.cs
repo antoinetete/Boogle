@@ -168,6 +168,7 @@ namespace Boogle
                         if(!player.Contains(reponse)){
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
+                                monPlateau.disphighlighted();
                                 points_marqué = player.Add_mot(reponse);
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.Write("Le mot est valide et ");
