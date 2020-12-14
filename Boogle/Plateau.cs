@@ -8,6 +8,7 @@ namespace Boogle
     {
         private const int size = 4;
         private De[,] contenu = new De[size, size];
+        private Random rnd = new Random();
 
         public char[,] Contenu
         {
