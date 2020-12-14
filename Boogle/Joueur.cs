@@ -4,22 +4,19 @@ namespace Boogle
 {
     class Joueur
     {
-        public string _name;
-        public int _score;
-        public List<string> _found;
+        private string _name;
+        private int _score;
+        private List<string> _found;
 
-        public string desc
-        {
-            get { return "-> " + _name + " " + Convert.ToString(_score); }
+        public string desc{
+            get{return "-> "+_name+" "+Convert.ToString(_score);}
+        }
+        public string Nom{
+            get{return this._name;}
         }
         public Joueur(string name)
         {
             _name = name;
-            _score = 0;
-            _found = new List<string>();
-        }
-        public Joueur() {
-            _name = "t'as rien mis";
             _score = 0;
             _found = new List<string>();
         }
@@ -38,18 +35,68 @@ namespace Boogle
         /// ajoute le mot dans la liste des trouvés par le joueur et la liste des mots trouvés par tous les joueurs
         /// </summary>
         /// <param name="mot"></param>
-        public void Add_mot(string mot)
+        public int Add_mot(string mot)
         {
-            if (mot.Length < 7) _score += mot.Length - 1;
-            else _score += 11;
+            int points = 0;
+            if (mot.Length < 7) points += mot.Length - 1;
+            else points += 11;
             _found.Add(mot);
+            _score+=points;
+            return points;
+        }
+        
+        public string action(){
+            return Console.ReadLine();
         }
 
         /// <summary>
-        /// renvoit true si le mot a déjà été trouvé par un des joueurs
+        /// affiche une description du joueur (son nom, son score et les mots qu'il a trouvé)
         /// </summary>
-        /// <param name="mot"></param>
         /// <returns></returns>
-
+        public override string ToString()
+        {
+            string res = $"{_name} a un score de {_score} et a trouvé les mots suivants :\n";
+            foreach (string mot in _found) {
+                res += $"{mot} ";
+            }
+            return res;
+        }
+        public static bool operator ==(Joueur A, Joueur B){
+            return A._name==B._name;
+        }
+        public static bool operator !=(Joueur A, Joueur B){
+            return A._name!=B._name;
+        }
+        public static bool operator ==(Joueur A, string name){
+            return A._name==name;
+        }
+        public static bool operator !=(Joueur A, string name){
+            return A._name!=name;
+        }
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            //
+            // See the full list of guidelines at
+            //   http://go.microsoft.com/fwlink/?LinkID=85237
+            // and also the guidance for operator== at
+            //   http://go.microsoft.com/fwlink/?LinkId=85238
+            //
+            
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            
+            // TODO: write your implementation of Equals() here
+            return this==(Joueur)obj;
+        }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            return base.GetHashCode();
+        }
     }
 }
