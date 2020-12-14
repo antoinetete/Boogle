@@ -14,32 +14,33 @@ namespace Boogle
         {
             get { return _dico; }
         }
-
+        
         public Dictionnaire(string path, string langue)
         {
             _langue = langue;
             _dico = new SortedList<int, string[]>();
             string input = File.ReadAllText(path);
             string[] dico = Regex.Split(input, @"[0-9]+");
-            int i=0;
+            int i=2;
             foreach (string item in dico)
             {
                 if (item != "")
                 {
-                    _dico.Add(item.Replace("\r\n", "").Split(' '));
+                    _dico.Add(i, item.Replace("\r\n", "").Split(' '));
+                    i++;
                 }
             }
         }
 
-        public override string ToString()
-        {
-            string res = "";
-            for (int i = 0; i < _dico.Count; i++)
-            {
-                res += $"Il y a {_dico[i].Length} mots de taille {i + 2}\n";
-            }
-            return res;
-        }
+        // public override string ToString()
+        // {
+        //     string res = "";
+        //     foreach (string[] tab in _dico)
+        //     {
+        //         res += $"Il y a {_dico[i].Length} mots de taille {i + 2}\n";
+        //     }
+        //     return res;
+        // }
 
         /// <summary>
         /// recherche dichotomique du mot demandé dans la liste de ceux de la meme taille
@@ -53,11 +54,11 @@ namespace Boogle
             int milieu = (debut + fin) / 2;
             if (debut <= fin)
             {
-                if (_dico[mot.Length - 2][milieu] == mot)
+                if (_dico[mot.Length][milieu] == mot)
                 {
                     return true;
                 }
-                else if (String.Compare(mot, _dico[mot.Length - 2][milieu]) < 0)
+                else if (String.Compare(mot, _dico[mot.Length][milieu]) < 0)
                 {
                     return RechDicoRecursif(debut, milieu - 1, mot);
                 }
