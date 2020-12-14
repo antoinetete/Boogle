@@ -87,6 +87,18 @@ namespace Boogle
         {
             return A._name != name;
         }
+        public static bool operator >=(Joueur A, Joueur B){
+            return A._score>=B._score;
+        }
+        public static bool operator <=(Joueur A, Joueur B){
+            return A._score<=B._score;
+        }
+        public static bool operator >(Joueur A, Joueur B){
+            return A._score>B._score;
+        }
+        public static bool operator <(Joueur A, Joueur B){
+            return A._score<B._score;
+        }
         // override object.Equals
         public override bool Equals(object obj)
         {

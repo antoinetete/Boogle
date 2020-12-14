@@ -34,10 +34,7 @@ namespace Boogle
                 if(participants.Count>0){
                     offset = 2+participants.Count;
                     Console.WriteLine("participants présent: ");
-                    foreach (Joueur item in participants)
-                    {
-                        Console.WriteLine(item.desc);
-                    }
+                    leaderboard();
                 }
                 Console.WriteLine("options de jeu :\n"
                                  + "  + ajouter un joueur\n"
@@ -151,15 +148,13 @@ namespace Boogle
                 Console.WriteLine(i);
                 Console.WriteLine(" ");
                 Console.WriteLine("Le score est de: ");
-                foreach(Joueur player in this.participants){
-                    Console.WriteLine(player.desc);
-                }
+                leaderboard();
                 Console.WriteLine(" ");
                 Console.WriteLine("appuyez sur enter pour continuer");
                 Console.ReadLine();
                 foreach(Joueur player in this.participants){
                     Console.Clear();
-                    Console.Write("C'est au tour de  ");
+                    Console.Write("C'est au tour de ");
                     Console.Write(player.Nom);
                     Console.WriteLine(" de Jouer !!");
                     Console.WriteLine("appuyez sur enter pour commencer !!");
@@ -174,24 +169,34 @@ namespace Boogle
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
                                 points_marqué = player.Add_mot(reponse);
-                                Console.Write("Le mot est valide et");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Le mot est valide et ");
                                 Console.Write(player.Nom);
                                 Console.Write(" marque ");
                                 Console.Write(points_marqué);
                                 Console.WriteLine("points!!");
+                                Console.ResetColor();
                             }else{
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("mince le mot n'est pas valide");
+                                Console.ResetColor();
                             }
                         }else{
                             Console.WriteLine("vous avez déja rentré ce mot !!");
                         }
                         Console.Write("Il vous reste ");
-                        Console.WriteLine(chrono.Elapsed-durrée);
+                        Console.WriteLine(durrée-chrono.Elapsed);
                     }
                     Console.WriteLine("temps écoulé !!");
                     Console.WriteLine("Appuyez sur entrer pour continuer");
                     Console.ReadLine();
                 }
+            }
+        }
+        public void leaderboard(){
+            this.participants.Sort();
+            foreach(Joueur player in this.participants){
+                Console.WriteLine(player.desc);
             }
         }
     }
