@@ -14,6 +14,10 @@ namespace Boogle
         {
             get { return _dico; }
         }
+
+        public int finduDico(string mot) { 
+            return _dico[mot.Length].Length;
+        }
         
         public Dictionnaire(string path, string langue)
         {

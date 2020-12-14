@@ -172,7 +172,7 @@ namespace Boogle
                         reponse = player.action();
                         if(!player.Contains(reponse)){
                             
-                            if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico,reponse)){
+                            if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
                                 points_marqué = player.Add_mot(reponse);
                                 Console.Write("Le mot est valide et");
                                 Console.Write(player.Nom);
