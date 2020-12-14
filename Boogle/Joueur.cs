@@ -4,17 +4,22 @@ namespace Boogle
 {
     class Joueur
     {
-        private string _name;
-        private int _score;
-        private List<string> _found;
-        private static List<string> _foundByAll = new List<string>();
+        public string _name;
+        public int _score;
+        public List<string> _found;
 
-        public string desc{
-            get{return "-> "+_name+" "+Convert.ToString(_score);}
+        public string desc
+        {
+            get { return "-> " + _name + " " + Convert.ToString(_score); }
         }
         public Joueur(string name)
         {
             _name = name;
+            _score = 0;
+            _found = new List<string>();
+        }
+        public Joueur() {
+            _name = "t'as rien mis";
             _score = 0;
             _found = new List<string>();
         }
@@ -38,7 +43,6 @@ namespace Boogle
             if (mot.Length < 7) _score += mot.Length - 1;
             else _score += 11;
             _found.Add(mot);
-            _foundByAll.Add(mot);
         }
 
         /// <summary>
@@ -46,23 +50,6 @@ namespace Boogle
         /// </summary>
         /// <param name="mot"></param>
         /// <returns></returns>
-        public bool Mot_Cite(string mot)
-        {
-            return _foundByAll.Contains(mot);
-        }
-        
-        /// <summary>
-        /// affiche une description du joueur (son nom, son score et les mots qu'il a trouvé)
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            string res = $"{_name} a un score de {_score} et a trouvé les mots suivants :\n";
-            foreach (string mot in _found) {
-                res += $"{mot} ";
-            }
-            return res;
-        }
-        
+
     }
 }

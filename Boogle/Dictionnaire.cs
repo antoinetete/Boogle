@@ -7,10 +7,10 @@ namespace Boogle
 {
     class Dictionnaire
     {
-        private List<string[]> _dico;
+        private SortedList<int, string[]> _dico;
         private string _langue;
 
-        public List<string[]> Dico
+        public SortedList<int, string[]> Dico
         {
             get { return _dico; }
         }
@@ -18,9 +18,10 @@ namespace Boogle
         public Dictionnaire(string path, string langue)
         {
             _langue = langue;
-            _dico = new List<string[]>();
+            _dico = new SortedList<int, string[]>();
             string input = File.ReadAllText(path);
             string[] dico = Regex.Split(input, @"[0-9]+");
+            int i=0;
             foreach (string item in dico)
             {
                 if (item != "")
@@ -40,6 +41,13 @@ namespace Boogle
             return res;
         }
 
+        /// <summary>
+        /// recherche dichotomique du mot demandé dans la liste de ceux de la meme taille
+        /// </summary>
+        /// <param name="debut"></param>
+        /// <param name="fin"></param>
+        /// <param name="mot"></param>
+        /// <returns></returns>
         public bool RechDicoRecursif(int debut, int fin, string mot)
         {
             int milieu = (debut + fin) / 2;
