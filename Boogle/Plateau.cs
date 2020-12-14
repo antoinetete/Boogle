@@ -8,6 +8,7 @@ namespace Boogle
     {
         private const int size=4;
         private De[,] contenu = new De[size,size];
+        private Random rnd = new Random();
 
         /// <summary>
         /// constructeur léger qui randomise les des
@@ -21,6 +22,7 @@ namespace Boogle
         }
         public Plateau(string path, Random rnd){
             StreamReader thereader = null;
+            this.rnd = rnd;
             List<De> myDice = new List<De>();
             try{
                 thereader = new StreamReader(path);
@@ -50,7 +52,13 @@ namespace Boogle
             }
             return res;
         }
-
+        public void Shuffle(){
+            for(int i=0;i<this.contenu.GetLength(0);i++){
+                for(int j=0;j<this.contenu.GetLength(1);j++){
+                    this.contenu[i,j].Lance(this.rnd);
+                }
+            }
+        }
         public bool Test_Plateau(string mot){
             bool res = false;
             List<De> visité= new List<De>();

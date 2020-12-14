@@ -8,7 +8,7 @@ namespace Boogle
         static void testDictionnaire(){
             Dictionnaire myDictionnaire = new Dictionnaire("../MotsPossibles.txt", "FR");
             Console.WriteLine(myDictionnaire.ToString());
-            Console.WriteLine(myDictionnaire.RechDicoRecursif(0, myDictionnaire.Dico[3].Length-1, "AVERA"));
+            Console.WriteLine(myDictionnaire.RechDicoRecursif(0, myDictionnaire.finduDico, "AVERA"));
         }
         static void testLoadPlateau(){
             Random rnd = new Random(SEED);
@@ -43,7 +43,7 @@ namespace Boogle
             testPlateau();
             testDictionnaire();
             testLoadPlateau();
-            new jeu("../MotsPossibles.txt","../Des.txt");
+            jeu thegame =new jeu("../MotsPossibles.txt","../Des.txt");
         }
     }
 }

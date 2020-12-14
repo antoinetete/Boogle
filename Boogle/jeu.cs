@@ -1,13 +1,16 @@
 using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Collections.Generic;
+
 namespace Boogle
 {
     public class jeu
     {
+        static int nbredetour=4;
         private Dictionnaire monDico;
         private Plateau monPlateau;
         private Random rnd = new Random();
-        private int nbTour=0;
         private List<Joueur> participants = new List<Joueur>();
         public jeu(string path_to_dico,string path_to_dice, int the_seed=-1){
             monDico = new Dictionnaire(path_to_dico,"FR");
@@ -58,12 +61,18 @@ namespace Boogle
                         switch (cursor)
                             {
                                 case 1:
+                                string tempstring;
                                     Console.Clear();
                                     Console.WriteLine("Vous avez choisi de rajouter un joueur !!");
                                     Console.WriteLine("veuillez rentrer un nom: ");
-                                    participants.Add(new Joueur(Console.ReadLine()));
+                                    tempstring = Console.ReadLine();
                                     Console.Clear();
-                                    Console.WriteLine("vous avez ajouté un joueur !!");
+                                    if(this.participants.Contains(new Joueur(tempstring))){
+                                        Console.WriteLine("ce joueur existe déja, veuillez choisir un autre nom");
+                                    }else{
+                                        participants.Add(new Joueur(tempstring));
+                                        Console.WriteLine("vous avez ajouté un joueur !!");
+                                    }
                                     Console.WriteLine("appuyez sur enter pour continuer");
                                     Console.ReadLine();
                                     break;
@@ -71,10 +80,49 @@ namespace Boogle
                                     throw new NotImplementedException();
                                     break;
                                 case 3:
-                                    throw new NotImplementedException();
+                                    string building="";
+
+                                    Console.Clear();
+                                    Console.WriteLine("vous avez choisi de retirer un joueur");
+                                    Console.WriteLine("veuillez renter le nom du joueur a retirer: ");
+                                    Console.WriteLine(building);
+                                    this.partialmatch(building);
+                                    ConsoleKeyInfo input = Console.ReadKey(intercept:true);
+                                    while (input.Key != ConsoleKey.Enter){
+                                        
+                                        if(input.Key == ConsoleKey.Backspace && building.Length>0){
+                                            building = building.Remove(building.Length-1);
+                                        }else{
+                                            if( char.IsLetterOrDigit(input.KeyChar)){
+                                                building+=input.KeyChar;
+                                            }
+                                        }
+                                        Console.Clear();
+                                        Console.WriteLine("vous avez choisi de retirer un joueur");
+                                        Console.WriteLine("veuillez renter le nom du joueur a retirer: ");
+                                        Console.WriteLine(building);
+                                        this.partialmatch(building);
+                                        input = Console.ReadKey(intercept:true);
+                                    }
+                                    Console.Clear();
+                                    if(this.participants.Contains(new Joueur(building))){
+                                        participants.Remove(new Joueur(building));
+                                        Console.WriteLine("le Joueur a été retiré avec succées");
+                                    }else{
+                                        Console.WriteLine("aucun joueur avec ce nom a été trouvé");
+                                    }
+                                    Console.WriteLine("veuillez apuyer sur enter pour continuer");
+                                    Console.ReadLine();
                                     break;
                                 case 4:
-                                    throw new NotImplementedException();
+                                    if(this.participants.Count>0){
+                                        this.jouerunepartie();
+                                    }else{
+                                        Console.Clear();
+                                        Console.WriteLine("Il faut minimum 1 joueur pour jouer une partie");
+                                        Console.WriteLine("Appuyez sur enter pour continuer");
+                                        Console.ReadLine();
+                                    }
                                     break;
                             }
                         break;
@@ -84,6 +132,65 @@ namespace Boogle
                 cursor = ((cursor+exomax)%(exomax));
             } while (cki.Key != ConsoleKey.Escape);
             throw new NotImplementedException();
+        }
+        private void partialmatch(string test){
+            foreach(Joueur sam in this.participants){
+                if(sam.Nom.Contains(test)){
+                    Console.WriteLine(sam.desc);
+                }
+            }
+        }
+        public void jouerunepartie(){
+            Stopwatch chrono = new Stopwatch();
+            TimeSpan durrée = new TimeSpan(0,1,0);
+            string reponse="";
+            int points_marqué=0;
+            for(int i=0;i<nbredetour;i++){
+                Console.Clear();
+                Console.Write("Début du Round ");
+                Console.WriteLine(i);
+                Console.WriteLine(" ");
+                Console.WriteLine("Le score est de: ");
+                foreach(Joueur player in this.participants){
+                    Console.WriteLine(player.desc);
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("appuyez sur enter pour continuer");
+                Console.ReadLine();
+                foreach(Joueur player in this.participants){
+                    Console.Clear();
+                    Console.Write("C'est au tour de ");
+                    Console.Write(player.Nom);
+                    Console.WriteLine(" de Jouer !!");
+                    Console.WriteLine("appuyez sur enter pour commencer !!");
+                    Console.ReadLine();
+                    chrono.Restart();
+                    while(chrono.Elapsed< durrée){
+                        Console.WriteLine(player.Nom);
+                        Console.WriteLine(this.monPlateau);
+                        Console.WriteLine("veuillez rentrer votre mot!!");
+                        reponse = player.action();
+                        if(!player.Contains(reponse)){
+                            
+                            if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico,reponse)){
+                                points_marqué = player.Add_mot(reponse);
+                                Console.Write("Le mot est valide et");
+                                Console.Write(player.Nom);
+                                Console.Write(" marque ");
+                                Console.Write(points_marqué);
+                                Console.WriteLine("points!!");
+                            }else{
+                                Console.WriteLine("mince le mot n'est pas valide");
+                            }
+                        }else{
+                            Console.WriteLine("vous avez déja rentré ce mot !!");
+                        }
+                        Console.Write("Il vous reste ");
+                        Console.WriteLine(chrono.Elapsed-durrée);
+                    }
+                    Console.WriteLine("temps écoulé !!");
+                }
+            }
         }
     }
 }
