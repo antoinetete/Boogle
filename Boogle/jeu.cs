@@ -139,8 +139,9 @@ namespace Boogle
             }
         }
         public void jouerunepartie(){
-            Stopwatch chrono = new Stopwatch();
             TimeSpan durrée = new TimeSpan(0,1,0);
+            superchrono thechrono = new superchrono(durrée);
+            Thread thechronothread = new Thread(new ThreadStart(thechrono.start));
             string reponse="";
             int points_marqué=0;
             for(int i=0;i<nbredetour;i++){
@@ -162,8 +163,8 @@ namespace Boogle
                     Console.WriteLine(" de Jouer !!");
                     Console.WriteLine("appuyez sur enter pour commencer !!");
                     Console.ReadLine();
-                    chrono.Restart();
-                    while(chrono.Elapsed< durrée){
+                    thechronothread.Start();
+                    while(thechrono.isitoveryet){
                         Console.WriteLine(player.Nom);
                         Console.WriteLine(this.monPlateau);
                         Console.WriteLine("veuillez rentrer votre mot!!");
@@ -188,8 +189,8 @@ namespace Boogle
                         }else{
                             Console.WriteLine("vous avez déja rentré ce mot !!");
                         }
-                        Console.Write("Il vous reste ");
-                        Console.WriteLine(durrée-chrono.Elapsed);
+                        //Console.Write("Il vous reste ");
+                        //Console.WriteLine(durrée-chrono.Elapsed);
                     }
                     Console.WriteLine("temps écoulé !!");
                     Console.WriteLine("Appuyez sur entrer pour continuer");
