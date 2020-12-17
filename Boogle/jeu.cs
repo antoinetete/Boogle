@@ -62,7 +62,7 @@ namespace Boogle
                                     Console.Clear();
                                     Console.WriteLine("Vous avez choisi de rajouter un joueur !!");
                                     Console.WriteLine("veuillez rentrer un nom: ");
-                                    tempstring = Console.ReadLine();
+                                    tempstring = validname();
                                     Console.Clear();
                                     if(this.participants.Contains(new Joueur(tempstring))){
                                         Console.WriteLine("ce joueur existe déja, veuillez choisir un autre nom");
@@ -202,6 +202,28 @@ namespace Boogle
             foreach(Joueur player in this.participants){
                 Console.WriteLine(player.desc);
             }
+        }
+        static string validname(){
+            string res =Console.ReadLine();
+            bool unsolved= true;
+            while(unsolved){
+                unsolved = false;
+                foreach(char letter in res){
+                    if(!char.IsLetterOrDigit(letter)){
+                        Console.WriteLine("veuillez rentrer un nom avec seulement des lettres ou chiffres");
+                        unsolved = true;
+                        break;
+                    }
+                }
+                if(res.Length<1){
+                    Console.WriteLine("veuillez rentrer un nom avec au moins un charactère");
+                    unsolved = true;
+                }
+                if(unsolved){
+                    res = Console.ReadLine();
+                }
+            }
+            return res;
         }
     }
 }

@@ -115,11 +115,6 @@ namespace Boogle
             // and also the guidance for operator== at
             //   http://go.microsoft.com/fwlink/?LinkId=85238
             //
-
-            if (obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
             return this == (Joueur)obj;
         }
 
@@ -133,7 +128,7 @@ namespace Boogle
         }
         public class IA : Joueur
         {
-            private int maxmots = 1;
+            private int sommeil = 1000;
             private Plateau leplateau;
             private Dictionnaire ledico;
             private Stack<string> motstrouve = new Stack<string>();
@@ -141,14 +136,13 @@ namespace Boogle
             public IA(int nbredejoueur,Dictionnaire undico)
             {
                 this.ledico = undico;
-                this._name = "IA "+Convert.ToString(nbredejoueur);
+                this._name = "IA"+Convert.ToString(nbredejoueur);
             }
 
             public override string action( Plateau unplateau)
             {
                 string res = " ";
-                int sommeil = 60000/maxmots;
-                if(this.motstrouve.Count==0 && this._found.Count==0){
+                if(this._found.Count==0){
                     this.leplateau = unplateau;
                     this.motstrouve = new Stack<string>();
                     foreach(string mot in this.ledico.getallWords()){
@@ -156,13 +150,12 @@ namespace Boogle
                             this.motstrouve.Push(mot);
                         }
                     }
-                    maxmots = this.motstrouve.Count+1;
-                    sommeil = 60000/maxmots;
+
+                    sommeil = 60000/(this.motstrouve.Count+1);
                 }
                 this.motstrouve.TryPop(out res);
                 if(res == null){
-                    res = " Je n'ai plus d'idée !!";
-                    sommeil = 1000;
+                    res = " beep boop bip bop";
                 }
                 Thread.Sleep(sommeil);
                 Console.WriteLine(res);
