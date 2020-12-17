@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Boogle
 {
-    class Dictionnaire
+    public class Dictionnaire
     {
         private SortedList<int, string[]> _dico;
         private string _langue;
@@ -74,6 +74,18 @@ namespace Boogle
             else
             {
                 return false;
+            }
+        }
+        public IEnumerable<string> getallWords(){
+            // for(int i=0;i<this._dico.Count;i++){
+            //     foreach(string mot in this._dico.){
+            //         yield return mot;
+            //     }
+            // }
+            foreach(var i in this._dico){
+                foreach(string mot in i.Value){
+                   yield return mot;
+                }
             }
         }
     }

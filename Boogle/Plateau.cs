@@ -27,6 +27,9 @@ namespace Boogle
             }
         }
 
+
+        public Plateau(){
+        }
         /// <summary>
         /// constructeur léger qui randomise les des
         /// </summary>
@@ -84,21 +87,25 @@ namespace Boogle
         public bool Test_Plateau(string mot)
         {
             bool res = false;
-            List<De> visité = new List<De>();
-            if (mot.Length >= 3)
+            this.latestvisit.Clear();
+            if(mot!=null)
             {
-                for (int i = 0; i < size; i++)
+                if (mot.Length >= 3)
                 {
-                    for (int j = 0; j < size; j++)
+                    for (int i = 0; i < size; i++)
                     {
-                        res = Test_coord(i, j, mot, 0, visité);//la recurrance est ici
-                        if (res)
+                        for (int j = 0; j < size; j++)
                         {
-                            return res;
+                            res = Test_coord(i, j, mot, 0, new List<De>());//la recurrance est ici
+                            if (res)
+                            {
+                                return res;
+                            }
                         }
                     }
                 }
             }
+            
             return res;
         }
         private bool Test_coord(int i, int j, string mot, int index, List<De> visité)
@@ -144,6 +151,15 @@ namespace Boogle
                     Console.ResetColor();
                 }
                 Console.WriteLine("");
+            }
+        }
+        public void Shuffle(){
+            for (int i = 0; i < this.contenu.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.contenu.GetLength(1); j++)
+                {
+                    this.contenu[i,j].Lance(rnd);
+                }
             }
         }
         private bool valid(int i, int j)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XtEoBy8Orx9Htz9LEoWuKpqcVo+bgTFfNYaTST2fQMQKNLRKO5RsQYirSm1Ryy+EAkV72m6n06ihf7rIWUSbMg==",
+  "dgSpecHash": "cna5I0SoJ8Cmtx1vI2D1FM8qix08HRioYinmE2fG7Aivqxkn/xbotH0wbhyH/nK6tzWAa5W8fTo21Evxok8KQg==",
   "success": true,
-  "projectFilePath": "/home/orca/a2/info/boogle/Boogle/Boogletests/Boogletests.csproj",
+  "projectFilePath": "/home/orca/a2/info/boogle/Boogle/Boogle.csproj",
   "expectedPackageFiles": [
     "/home/orca/.nuget/packages/coverlet.collector/1.2.0/coverlet.collector.1.2.0.nupkg.sha512",
     "/home/orca/.nuget/packages/microsoft.codecoverage/16.5.0/microsoft.codecoverage.16.5.0.nupkg.sha512",

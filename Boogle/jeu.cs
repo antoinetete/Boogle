@@ -74,7 +74,7 @@ namespace Boogle
                                     Console.ReadLine();
                                     break;
                                 case 2:
-                                    throw new NotImplementedException();
+                                    this.participants.Add(new Joueur.IA(this.participants.Count,this.monDico));
                                     break;
                                 case 3:
                                     string building="";
@@ -128,7 +128,8 @@ namespace Boogle
                 }
                 cursor = ((cursor+exomax)%(exomax));
             } while (cki.Key != ConsoleKey.Escape);
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Merci d'avoir joué au Boogle");
         }
         private void partialmatch(string test){
             foreach(Joueur sam in this.participants){
@@ -154,6 +155,8 @@ namespace Boogle
                 Console.ReadLine();
                 foreach(Joueur player in this.participants){
                     Console.Clear();
+                    this.monPlateau.Shuffle();
+                    player.Clear();
                     Console.Write("C'est au tour de ");
                     Console.Write(player.Nom);
                     Console.WriteLine(" de Jouer !!");
@@ -164,7 +167,7 @@ namespace Boogle
                         Console.WriteLine(player.Nom);
                         Console.WriteLine(this.monPlateau);
                         Console.WriteLine("veuillez rentrer votre mot!!");
-                        reponse = player.action();
+                        reponse = player.action(this.monPlateau);
                         if(!player.Contains(reponse)){
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){

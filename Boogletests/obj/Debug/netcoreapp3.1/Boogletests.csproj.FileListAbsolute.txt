@@ -94,3 +94,6 @@
 /home/orca/a2/info/boogle/Boogle/Boogletests/obj/Debug/netcoreapp3.1/Boogletests.dll
 /home/orca/a2/info/boogle/Boogle/Boogletests/obj/Debug/netcoreapp3.1/Boogletests.pdb
 /home/orca/a2/info/boogle/Boogle/Boogletests/obj/Debug/netcoreapp3.1/Boogletests.genruntimeconfig.cache
+/home/orca/a2/info/boogle/Boogle/Boogletests/bin/Debug/netcoreapp3.1/Boogle
+/home/orca/a2/info/boogle/Boogle/Boogletests/bin/Debug/netcoreapp3.1/Boogle.dll
+/home/orca/a2/info/boogle/Boogle/Boogletests/bin/Debug/netcoreapp3.1/Boogle.pdb

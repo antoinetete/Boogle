@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using System;
+using System.Threading;
 namespace Boogle
 {
-    class Joueur
+    public class Joueur : IComparable
     {
         private string _name;
         private int _score;
         private List<string> _found;
 
+        public int Score{
+            get{return _score;}
+        }
         public string desc
         {
             get { return "-> " + _name + " " + Convert.ToString(_score); }
@@ -38,6 +42,9 @@ namespace Boogle
         {
             return _found.Contains(mot);
         }
+        public void Clear(){
+            this._found.Clear();
+        }
 
         /// <summary>
         /// ajoute le mot dans la liste des trouvés par le joueur et la liste des mots trouvés par tous les joueurs
@@ -53,7 +60,7 @@ namespace Boogle
             return points;
         }
 
-        public string action()
+        public virtual string action(Plateau leplateau)
         {
             return Console.ReadLine().ToUpper();
         }
@@ -113,30 +120,56 @@ namespace Boogle
             {
                 return false;
             }
-
-            // TODO: write your implementation of Equals() here
             return this == (Joueur)obj;
         }
 
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            // TODO: write your implementation of GetHashCode() here
             return base.GetHashCode();
         }
-        class IA : Joueur
+        int IComparable.CompareTo(object obj){
+            return ((Joueur)obj)._score-this._score;
+        }
+        public class IA : Joueur
         {
-            private char[,] _plateau;
-            private List<string> mots;
+            private int maxmots = 1;
+            private Plateau leplateau;
+            private Dictionnaire ledico;
+            private Stack<string> motstrouve = new Stack<string>();
 
-            public IA(char[,] plateau)
+            public IA(int nbredejoueur,Dictionnaire undico)
             {
-                _plateau = plateau;
-                _name = "IA";
-                mots = new List<string>();
+                this.ledico = undico;
+                this._name = "IA "+Convert.ToString(nbredejoueur);
             }
 
+            public override string action( Plateau unplateau)
+            {
+                string res = " ";
+                int sommeil = 60000/maxmots;
+                if(this.motstrouve.Count==0 && this._found.Count==0){
+                    this.leplateau = unplateau;
+                    this.motstrouve = new Stack<string>();
+                    foreach(string mot in this.ledico.getallWords()){
+                        if(this.leplateau.Test_Plateau(mot)){
+                            this.motstrouve.Push(mot);
+                        }
+                    }
+                    maxmots = this.motstrouve.Count+1;
+                    sommeil = 60000/maxmots;
+                }
+                this.motstrouve.TryPop(out res);
+                if(res == null){
+                    res = " Je n'ai plus d'idée !!";
+                    sommeil = 1000;
+                }
+                Thread.Sleep(sommeil);
+                Console.WriteLine(res);
+                return res;
+            }
 
-        }
+        }  
     }
+    
 }

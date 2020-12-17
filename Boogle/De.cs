@@ -2,7 +2,7 @@ using System;
 
 namespace Boogle
 {
-    class De
+    public class De
     {
         private const int nombredeface = 6;
         private char[] _values = new char[nombredeface];
@@ -12,6 +12,9 @@ namespace Boogle
         
         public char SelectedValue{
             get{return this._selectedValue;}
+        }
+        public char[] Values{
+            get{return _values;}
         }
 
         /// <summary>
@@ -30,9 +33,15 @@ namespace Boogle
         {
             if (values.Length == nombredeface)
             {
+                foreach(char atester in values){
+                    if(!char.IsLetter(atester)){
+                        throw new Exception("un des char n est pas une lettre");
+                    }
+                }
                 _values = values;
                 lastid++;
                 myid = lastid;
+                
             }else{
                 throw new Exception("Le char de valeurs n'est pas égale au nombre de face");
             }
@@ -100,15 +109,12 @@ namespace Boogle
             {
                 return false;
             }
-            
-            // TODO: write your implementation of Equals() here
             return base.Equals(obj);
         }
         
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            // TODO: write your implementation of GetHashCode() here
             return base.GetHashCode();
         }
     }
