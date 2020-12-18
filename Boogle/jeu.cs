@@ -62,7 +62,7 @@ namespace Boogle
                                     Console.Clear();
                                     Console.WriteLine("Vous avez choisi de rajouter un joueur !!");
                                     Console.WriteLine("veuillez rentrer un nom: ");
-                                    tempstring = Console.ReadLine();
+                                    tempstring = validname();
                                     Console.Clear();
                                     if(this.participants.Contains(new Joueur(tempstring))){
                                         Console.WriteLine("ce joueur existe déja, veuillez choisir un autre nom");
@@ -74,7 +74,7 @@ namespace Boogle
                                     Console.ReadLine();
                                     break;
                                 case 2:
-                                    throw new NotImplementedException();
+                                    this.participants.Add(new Joueur.IA(this.participants.Count,this.monDico));
                                     break;
                                 case 3:
                                     string building="";
@@ -128,7 +128,8 @@ namespace Boogle
                 }
                 cursor = ((cursor+exomax)%(exomax));
             } while (cki.Key != ConsoleKey.Escape);
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Merci d'avoir joué au Boogle");
         }
         private void partialmatch(string test){
             foreach(Joueur sam in this.participants){
@@ -138,8 +139,9 @@ namespace Boogle
             }
         }
         public void jouerunepartie(){
-            Stopwatch chrono = new Stopwatch();
             TimeSpan durrée = new TimeSpan(0,1,0);
+            superchrono thechrono = new superchrono(durrée);
+            Thread thechronothread = new Thread(new ThreadStart(thechrono.start));
             string reponse="";
             int points_marqué=0;
             for(int i=0;i<nbredetour;i++){
@@ -154,17 +156,19 @@ namespace Boogle
                 Console.ReadLine();
                 foreach(Joueur player in this.participants){
                     Console.Clear();
+                    this.monPlateau.Shuffle();
+                    player.Clear();
                     Console.Write("C'est au tour de ");
                     Console.Write(player.Nom);
                     Console.WriteLine(" de Jouer !!");
                     Console.WriteLine("appuyez sur enter pour commencer !!");
                     Console.ReadLine();
-                    chrono.Restart();
-                    while(chrono.Elapsed< durrée){
+                    thechronothread.Start();
+                    while(thechrono.isitoveryet){
                         Console.WriteLine(player.Nom);
                         Console.WriteLine(this.monPlateau);
                         Console.WriteLine("veuillez rentrer votre mot!!");
-                        reponse = player.action();
+                        reponse = player.action(this.monPlateau);
                         if(!player.Contains(reponse)){
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
@@ -185,8 +189,8 @@ namespace Boogle
                         }else{
                             Console.WriteLine("vous avez déja rentré ce mot !!");
                         }
-                        Console.Write("Il vous reste ");
-                        Console.WriteLine(durrée-chrono.Elapsed);
+                        //Console.Write("Il vous reste ");
+                        //Console.WriteLine(durrée-chrono.Elapsed);
                     }
                     Console.WriteLine("temps écoulé !!");
                     Console.WriteLine("Appuyez sur entrer pour continuer");
@@ -199,6 +203,28 @@ namespace Boogle
             foreach(Joueur player in this.participants){
                 Console.WriteLine(player.desc);
             }
+        }
+        static string validname(){
+            string res =Console.ReadLine();
+            bool unsolved= true;
+            while(unsolved){
+                unsolved = false;
+                foreach(char letter in res){
+                    if(!char.IsLetterOrDigit(letter)){
+                        Console.WriteLine("veuillez rentrer un nom avec seulement des lettres ou chiffres");
+                        unsolved = true;
+                        break;
+                    }
+                }
+                if(res.Length<1){
+                    Console.WriteLine("veuillez rentrer un nom avec au moins un charactère");
+                    unsolved = true;
+                }
+                if(unsolved){
+                    res = Console.ReadLine();
+                }
+            }
+            return res;
         }
     }
 }

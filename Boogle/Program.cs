@@ -40,9 +40,6 @@ namespace Boogle
         }
         static void Main(string[] args)
         {
-            testPlateau();
-            testDictionnaire();
-            testLoadPlateau();
             jeu thegame =new jeu("../MotsPossibles.txt","../Des.txt");
         }
     }
