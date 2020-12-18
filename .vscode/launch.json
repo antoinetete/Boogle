@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/Boogle/bin/Debug/netcoreapp3.1/Boogle.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Boogle",
-            "console": "integratedTerminal",
+            "console": "externalTerminal",
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
