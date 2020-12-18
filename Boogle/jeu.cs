@@ -169,16 +169,13 @@ namespace Boogle
                         Console.WriteLine(this.monPlateau);
                         Console.WriteLine("veuillez rentrer votre mot!!");
                         reponse = player.action(this.monPlateau);
-                        Console.Clear();
                         if(!player.Contains(reponse)){
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
                                 monPlateau.disphighlighted();
                                 points_marqué = player.Add_mot(reponse);
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.Write("Le mot ");
-                                Console.Write(reponse);
-                                Console.Write(" est valide et ");
+                                Console.Write("Le mot est valide et ");
                                 Console.Write(player.Nom);
                                 Console.Write(" marque ");
                                 Console.Write(points_marqué);
