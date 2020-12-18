@@ -5,7 +5,7 @@ namespace Boogle
 {
     public class superchrono
     {
-        private int xcursor=2;
+        private int xcursor=0;
         private int ycursor=0;
         private Stopwatch chrono = new Stopwatch();
         private TimeSpan theduration;
@@ -26,7 +26,7 @@ namespace Boogle
                 temp*=100;
                 int cursorleft = Console.CursorLeft;
                 int cursortop = Console.CursorTop;
-                Console.SetCursorPosition(Console.WindowWidth - empty.Length - xcursor,ycursor);
+                Console.SetCursorPosition(Console.WindowWidth - empty.Length - xcursor,Console.WindowTop-ycursor);
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 if(temp<80){
                     Console.ForegroundColor = ConsoleColor.Green;
