@@ -128,15 +128,17 @@ namespace Boogle
         }
         public class IA : Joueur
         {
+            static int id=0;
             private int sommeil = 1000;
             private Plateau leplateau;
             private Dictionnaire ledico;
             private Stack<string> motstrouve = new Stack<string>();
 
-            public IA(int nbredejoueur,Dictionnaire undico)
+            public IA(Dictionnaire undico)
             {
                 this.ledico = undico;
-                this._name = "IA"+Convert.ToString(nbredejoueur);
+                this._name = "IA"+Convert.ToString(id);
+                id+=1;
             }
 
             public override string action( Plateau unplateau)

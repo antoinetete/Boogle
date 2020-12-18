@@ -74,7 +74,7 @@ namespace Boogle
                                     Console.ReadLine();
                                     break;
                                 case 2:
-                                    this.participants.Add(new Joueur.IA(this.participants.Count,this.monDico));
+                                    this.participants.Add(new Joueur.IA(this.monDico));
                                     break;
                                 case 3:
                                     string building="";
@@ -169,6 +169,7 @@ namespace Boogle
                         Console.WriteLine(this.monPlateau);
                         Console.WriteLine("veuillez rentrer votre mot!!");
                         reponse = player.action(this.monPlateau);
+                        Console.Clear();
                         if(!player.Contains(reponse)){
                             
                             if(monPlateau.Test_Plateau(reponse) && monDico.RechDicoRecursif(0,monDico.finduDico(reponse),reponse)){
