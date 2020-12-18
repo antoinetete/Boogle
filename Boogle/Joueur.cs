@@ -82,9 +82,9 @@ namespace Boogle
         public int Add_mot(string mot)
         {
             int points = 0;
-            if (mot.Length < 7) points += mot.Length - 1;
+            if (mot.Length < 7) points += mot.Length - 1;//calcul du score
             else points += 11;
-            _found.Add(mot);
+            _found.Add(mot);// ne pas redetecter les mots
             _score += points;
             return points;
         }
@@ -99,7 +99,7 @@ namespace Boogle
         /// </returns>
         public virtual string action(Plateau leplateau)//virtual for child override
         {
-            return Console.ReadLine().ToUpper();
+            return Console.ReadLine().ToUpper();// to upper standardize 
         }
 
         /// <summary>
@@ -180,8 +180,8 @@ namespace Boogle
             public IA(Dictionnaire undico)
             {
                 this.ledico = undico;
-                this._name = "IA"+Convert.ToString(id);
-                id+=1;
+                this._name = "IA"+Convert.ToString(id);//id unique
+                id+=1;//le prochain id sera different
             }
             
             /// <summary>
@@ -196,22 +196,22 @@ namespace Boogle
             public override string action( Plateau unplateau)
             {
                 string res = " ";
-                if(this._found.Count==0){
+                if(this._found.Count==0){// si pas de mots trouvé ce round
                     this.leplateau = unplateau;
                     this.motstrouve = new Stack<string>();
-                    foreach(string mot in this.ledico.getallWords()){
+                    foreach(string mot in this.ledico.getallWords()){//verifier si chaque mot du dico existe sur le plateau
                         if(this.leplateau.Test_Plateau(mot)){
                             this.motstrouve.Push(mot);
                         }
                     }
-                    sommeil = 60000/(this.motstrouve.Count+1);
+                    sommeil = 60000/(this.motstrouve.Count+1);// someill proportionel au nombre de mots
                 }
                 this.motstrouve.TryPop(out res);
                 if(res == null){
-                    res = " beep boop bip bop";
+                    res = " beep boop bip bop";// just pour le dernier mot 
                 }
                 Thread.Sleep(sommeil);
-                Console.WriteLine(res);
+                Console.WriteLine(res);//afficher la reponse
                 return res;
             }
 

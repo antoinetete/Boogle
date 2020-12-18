@@ -45,10 +45,10 @@ namespace Boogletests
             Random rnd = new Random();
             try{
                 new De(input, rnd);
-                Assert.False(true);
+                Assert.False(true);//echec, on n est jamais sensé arriver ici
             }
             catch (Exception){
-                Assert.True(true);
+                Assert.True(true);//reussite car toutes les erreurs ont été attrapé
             }
             
         }

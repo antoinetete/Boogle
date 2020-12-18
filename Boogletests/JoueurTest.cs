@@ -48,7 +48,7 @@ namespace Boogletests
         [InlineData("incredible")]
         [InlineData("mos")]
         /// <summary>
-        /// test fonctionnement du score
+        /// test fonctionnement du score 
         /// </summary>
         /// <param name="mot"></param>
         public void test_score(string mot){

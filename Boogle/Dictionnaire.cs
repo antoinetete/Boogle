@@ -58,7 +58,7 @@ namespace Boogle
                 {
                     if (item != "")
                     {
-                        _dico.Add(i, item.Replace("\r\n", "").Split(' '));
+                        _dico.Add(i, item.Replace("\r\n", "").Split(' '));//parsing des mots
                         i++;
                     }
                 }
@@ -135,9 +135,9 @@ namespace Boogle
         /// tous les mots du dico
         /// </returns>
         public IEnumerable<string> getallWords(){
-            foreach(var i in this._dico){
-                foreach(string mot in i.Value){
-                   yield return mot;
+            foreach(var i in this._dico){//pour chaque longueur de mots 
+                foreach(string mot in i.Value){//pour chaque mot de cette longueur
+                   yield return mot;//retourner seulement ce mot
                 }
             }
         }

@@ -35,7 +35,7 @@ namespace Boogle
         /// </summary>
         public De(Random rnd){
             for(int i=0;i<this._values.Length;i++){
-                this._values[i] = (char)rnd.Next('a','z');
+                this._values[i] = (char)rnd.Next('a','z');//genere un char random
             }
             this.Lance(rnd);
             lastid++;
@@ -83,7 +83,7 @@ namespace Boogle
             if (values.Length == nombredeface)
             {
                 for(int i=0;i<_values.Length;i++){
-                    if(values[i].Length==1 && char.IsLetter(values[i][0])){
+                    if(values[i].Length==1 && char.IsLetter(values[i][0])){// si char est valid
                         _values[i] = values[i][0];
                     }else{
                         throw new Exception("dice data is invalide");
@@ -105,7 +105,7 @@ namespace Boogle
         /// </param>
         public void Lance(Random r)
         {
-            _selectedValue = this._values[r.Next(this._values.Length)];
+            _selectedValue = this._values[r.Next(this._values.Length)];// nouveau selected value rnd
         }
 
         /// <summary>
