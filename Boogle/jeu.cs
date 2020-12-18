@@ -176,7 +176,9 @@ namespace Boogle
                                 monPlateau.disphighlighted();
                                 points_marqué = player.Add_mot(reponse);
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.Write("Le mot est valide et ");
+                                Console.Write("Le mot ");
+                                Console.Write(reponse);
+                                Console.Write(" est valide et ");
                                 Console.Write(player.Nom);
                                 Console.Write(" marque ");
                                 Console.Write(points_marqué);
