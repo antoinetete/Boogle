@@ -21,6 +21,7 @@ namespace Boogle
             while(this.isitoveryet){
                 Thread.Sleep(100);
                 string empty ="Il vous reste: "+Convert.ToString((this.theduration-chrono.Elapsed).Seconds)+"s";
+                empty = empty.PadLeft(18);
                 double temp = (this.theduration.TotalSeconds-this.chrono.Elapsed.TotalSeconds)/(this.theduration.TotalSeconds);
                 temp*=100;
                 int cursorleft = Console.CursorLeft;

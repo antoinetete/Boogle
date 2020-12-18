@@ -150,7 +150,6 @@ namespace Boogle
                             this.motstrouve.Push(mot);
                         }
                     }
-
                     sommeil = 60000/(this.motstrouve.Count+1);
                 }
                 this.motstrouve.TryPop(out res);
