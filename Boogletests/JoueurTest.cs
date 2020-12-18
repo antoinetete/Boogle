@@ -2,7 +2,7 @@ using System;
 using Boogle;
 using Xunit;
 
-namespace Boogletest
+namespace Boogletests
 {
     public class JoueurTest
     {

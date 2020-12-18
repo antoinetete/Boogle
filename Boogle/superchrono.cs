@@ -36,9 +36,6 @@ namespace Boogle
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                 }
                 if(temp<30){
-                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                }
-                if(temp<25){
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                 }
                 if(temp<15){
