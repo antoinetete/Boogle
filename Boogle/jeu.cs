@@ -140,8 +140,6 @@ namespace Boogle
         }
         public void jouerunepartie(){
             TimeSpan durrée = new TimeSpan(0,1,0);
-            superchrono thechrono = new superchrono(durrée);
-            Thread thechronothread = new Thread(new ThreadStart(thechrono.start));
             string reponse="";
             int points_marqué=0;
             for(int i=0;i<nbredetour;i++){
@@ -163,6 +161,8 @@ namespace Boogle
                     Console.WriteLine(" de Jouer !!");
                     Console.WriteLine("appuyez sur enter pour commencer !!");
                     Console.ReadLine();
+                    superchrono thechrono = new superchrono(durrée);
+                    Thread thechronothread = new Thread(new ThreadStart(thechrono.start));
                     thechronothread.Start();
                     while(thechrono.isitoveryet){
                         Console.WriteLine(player.Nom);
