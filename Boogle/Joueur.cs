@@ -3,29 +3,58 @@ using System;
 using System.Threading;
 namespace Boogle
 {
+    /// <summary>
+    /// une classe joueur qui implémente ICompatable.CompareTo() pour les sorts
+    /// </summary>
     public class Joueur : IComparable
     {
-        private string _name;
-        private int _score;
+        private string _name;//le nom du joueur
+        private int _score;//le score du joueur
         private List<string> _found;
 
+        /// <summary>
+        /// score public pour accéder dans les affichages
+        /// </summary>
+        /// <value>
+        /// le score du joueur
+        /// </value>
         public int Score{
             get{return _score;}
         }
+
+        /// <summary>
+        /// une courte decription du joueur pour garder le ToString comme officiel
+        /// </summary>
+        /// <value>
+        /// exe: -> sam 3
+        /// </value>
         public string desc
         {
             get { return "-> " + _name + " " + Convert.ToString(_score); }
         }
+        /// <summary>
+        /// string public utilisé pour faire les choix de joueur
+        /// </summary>
+        /// <value>
+        /// le nom du joueur 
+        /// </value>
         public string Nom
         {
             get { return this._name; }
         }
+        /// <summary>
+        /// constructeur simple prennant seulement le nom du joueur
+        /// </summary>
+        /// <param name="name"></param>
         public Joueur(string name)
         {
             _name = name;
             _score = 0;
             _found = new List<string>();
         }
+        /// <summary>
+        /// constructeur le plus simple
+        /// </summary>
         public Joueur()
         {
             _name = "t'as rien mis";
@@ -60,7 +89,15 @@ namespace Boogle
             return points;
         }
 
-        public virtual string action(Plateau leplateau)
+        /// <summary>
+        /// fonction utilise pour obtenir la réponse du joueur
+        /// est ovveride chez ia pour sa propre implémentation
+        /// </summary>
+        /// <param name="leplateau"></param>
+        /// <returns>
+        /// un string representant la reponse du joueur
+        /// </returns>
+        public virtual string action(Plateau leplateau)//virtual for child override
         {
             return Console.ReadLine().ToUpper();
         }
@@ -78,6 +115,8 @@ namespace Boogle
             }
             return res;
         }
+
+        #region operators and comparators
         public static bool operator ==(Joueur A, Joueur B)
         {
             return A._name == B._name;
@@ -109,12 +148,6 @@ namespace Boogle
         // override object.Equals
         public override bool Equals(object obj)
         {
-            //
-            // See the full list of guidelines at
-            //   http://go.microsoft.com/fwlink/?LinkID=85237
-            // and also the guidance for operator== at
-            //   http://go.microsoft.com/fwlink/?LinkId=85238
-            //
             return this == (Joueur)obj;
         }
 
@@ -126,21 +159,40 @@ namespace Boogle
         int IComparable.CompareTo(object obj){
             return ((Joueur)obj)._score-this._score;
         }
+        #endregion
+        /// <summary>
+        /// une classe dérivée de Joueur ou l'IA joue a la place d un joueur
+        /// </summary>
         public class IA : Joueur
         {
-            static int id=0;
-            private int sommeil = 1000;
-            private Plateau leplateau;
-            private Dictionnaire ledico;
-            private Stack<string> motstrouve = new Stack<string>();
+            static int id=0;//un id unique pour la creation des noms
+            private int sommeil = 1000;//durée de sommeil entre chaque tentative
+            private Plateau leplateau;// le plateau de jeu
+            private Dictionnaire ledico;// le dico des mots
+            private Stack<string> motstrouve = new Stack<string>();//stack contenant les mots trouvé
 
+            /// <summary>
+            /// constructeur simple 
+            /// </summary>
+            /// <param name="undico">
+            /// le dico de mot  a chercher
+            /// </param>
             public IA(Dictionnaire undico)
             {
                 this.ledico = undico;
                 this._name = "IA"+Convert.ToString(id);
                 id+=1;
             }
-
+            
+            /// <summary>
+            /// ovveride de la methode de joueur de action ou l IA propose des mots
+            /// </summary>
+            /// <param name="unplateau">
+            /// le plateau dejeu pour le quel les mots doivent etres cherché
+            /// </param>
+            /// <returns>
+            /// un string représentant le choix de l'IA
+            /// </returns>
             public override string action( Plateau unplateau)
             {
                 string res = " ";

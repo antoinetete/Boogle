@@ -5,17 +5,35 @@ namespace Boogle
 {
     public class superchrono
     {
-        private int xcursor=0;
-        private int ycursor=0;
-        private Stopwatch chrono = new Stopwatch();
-        private TimeSpan theduration;
+        private int xcursor=0;//offset horizontal du curseur
+        private int ycursor=0;//offset vertical du curseur
+        private Stopwatch chrono = new Stopwatch();//le chrono utilisé pour chronometrer
+        private TimeSpan theduration;//la duration d un round
+
+        /// <summary>
+        /// évalue si il reste du temps ou non
+        /// </summary>
+        /// <value>
+        /// true if time remains
+        /// false if time is up
+        /// </value>
         public bool isitoveryet{
             get{return chrono.Elapsed < theduration;}
         }
+
+        /// <summary>
+        /// constructeur simple prennant en entré la duration d un round
+        /// </summary>
+        /// <param name="duration">
+        /// la durrée d un round
+        /// </param>
         public superchrono(TimeSpan duration){
             this.theduration = duration;
         }
         
+        /// <summary>
+        /// démarre le chrono et gére l affichage du temps qui s'écoule
+        /// </summary>
         public void start(){
             chrono.Restart();
             while(this.isitoveryet){

@@ -5,21 +5,46 @@ using System.Text.RegularExpressions;
 
 namespace Boogle
 {
+    /// <summary>
+    /// une classe dictionnaire qui tien un lien entre un groupe de mots et une langue
+    /// </summary>
     public class Dictionnaire
     {
-        private SortedList<int, string[]> _dico;
-        private string _langue;
+        private SortedList<int, string[]> _dico;//la liste des mots valides
+        private string _langue;//la langue du dico
 
+        /// <summary>
+        /// Le dico des mots en readonly
+        /// </summary>
+        /// <value></value>
         public SortedList<int, string[]> Dico
         {
             get { return _dico; }
         }
 
+        /// <summary>
+        /// un int représentant la fin du dico utile pour l'appel a la recherche recursif sans savoir ou est la fin.
+        /// </summary>
+        /// <param name="mot">
+        /// le mot don la longueur influe sur la taille
+        /// </param>
+        /// <returns>
+        /// un int de position dans le dico
+        /// </returns>
         public int finduDico(string mot)
         {
             return _dico[mot.Length].Length;
         }
 
+        /// <summary>
+        /// constructeur complet prennant en entrée le path ver le fichier
+        /// </summary>
+        /// <param name="path">
+        /// le chemin vers le ficheir de dictionnaire
+        /// </param>
+        /// <param name="langue">
+        /// la langue du dictionnaire
+        /// </param>
         public Dictionnaire(string path, string langue)
         {
             try
@@ -38,16 +63,22 @@ namespace Boogle
                     }
                 }
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                Console.WriteLine(e);
+                throw new Exception("le fichier n'a pas ete trouvé");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
+                throw new Exception("erreur inattendu");
             }
         }
 
+        /// <summary>
+        /// representation en string du dico
+        /// </summary>
+        /// <returns>
+        /// un long string
+        /// </returns>
         public override string ToString()
         {
             string res = "";
@@ -61,10 +92,19 @@ namespace Boogle
         /// <summary>
         /// recherche dichotomique du mot demandé dans la liste de ceux de la meme taille
         /// </summary>
-        /// <param name="debut"></param>
-        /// <param name="fin"></param>
-        /// <param name="mot"></param>
-        /// <returns></returns>
+        /// <param name="debut">
+        /// 0
+        /// </param>
+        /// <param name="fin">
+        /// finducdico
+        /// </param>
+        /// <param name="mot">
+        /// mot a recherhcher
+        /// </param>
+        /// <returns>
+        /// true if mot existe 
+        /// false if mot existe pas
+        /// </returns>
         public bool RechDicoRecursif(int debut, int fin, string mot)
         {
             int milieu = (debut + fin) / 2;
@@ -88,12 +128,13 @@ namespace Boogle
                 return false;
             }
         }
+        /// <summary>
+        /// implementation d'un enumerable permettant de recuperer tous les mots du dico pour l'IA
+        /// </summary>
+        /// <returns>
+        /// tous les mots du dico
+        /// </returns>
         public IEnumerable<string> getallWords(){
-            // for(int i=0;i<this._dico.Count;i++){
-            //     foreach(string mot in this._dico.){
-            //         yield return mot;
-            //     }
-            // }
             foreach(var i in this._dico){
                 foreach(string mot in i.Value){
                    yield return mot;
