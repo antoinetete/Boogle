@@ -4,18 +4,23 @@ namespace Boogle
 {
     class Program
     {
+        // quelques tests
+        #region
         static int SEED = 3;
-        static void testDictionnaire(){
+        static void testDictionnaire()
+        {
             Dictionnaire myDictionnaire = new Dictionnaire("../MotsPossibles.txt", "FR");
             Console.WriteLine(myDictionnaire.ToString());
             Console.WriteLine(myDictionnaire.RechDicoRecursif(0, myDictionnaire.finduDico("AVERA"), "AVERA"));
         }
-        static void testLoadPlateau(){
+        static void testLoadPlateau()
+        {
             Random rnd = new Random(SEED);
-            Plateau myplateau = new Plateau("../Des.txt",rnd);
+            Plateau myplateau = new Plateau("../Des.txt", rnd);
             Console.WriteLine(myplateau);
         }
-        static void testPlateau(){
+        static void testPlateau()
+        {
             Random rnd = new Random(SEED);
             Plateau myplateau = new Plateau(rnd);
             Console.WriteLine(myplateau);
@@ -38,9 +43,11 @@ namespace Boogle
             Console.Write("m: ");
             Console.WriteLine(myplateau.Test_Plateau("m"));
         }
+        #endregion
+
         static void Main(string[] args)
         {
-            jeu thegame =new jeu("../MotsPossibles.txt","../Des.txt");
+            jeu thegame = new jeu("../MotsPossibles.txt", "../Des.txt"); //crée une nouvelle partie
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Boogle
         private Plateau monPlateau;
         private Random rnd = new Random();
         private List<Joueur> participants = new List<Joueur>();
+
         public jeu(string path_to_dico,string path_to_dice, int the_seed=-1){
             monDico = new Dictionnaire(path_to_dico,"FR");
             if(the_seed!=-1){
@@ -20,8 +21,12 @@ namespace Boogle
             monPlateau = new Plateau(path_to_dice,rnd);
             initilisation();
         }
+
+        /// <summary>
+        /// affiche le menu du Boogle et gère la création / suppression de joueurs
+        /// </summary>
         public void initilisation(){
-            //ici on initie les joueurs
+            //ici on initialise les joueurs
             ConsoleKeyInfo cki;
             const int exomin=1;
             const int exomax=4;
@@ -131,6 +136,11 @@ namespace Boogle
             Console.Clear();
             Console.WriteLine("Merci d'avoir joué au Boogle");
         }
+
+        /// <summary>
+        /// affiche les noms des joueurs dont le nom contient le string en input
+        /// </summary>
+        /// <param name="test"></param>
         private void partialmatch(string test){
             foreach(Joueur sam in this.participants){
                 if(sam.Nom.Contains(test)){
@@ -138,6 +148,10 @@ namespace Boogle
                 }
             }
         }
+
+        /// <summary>
+        /// lance une partie, affiche le nom du joueur qui doit jouer, son score, le plateau et le temps restant
+        /// </summary>
         public void jouerunepartie(){
             TimeSpan durrée = new TimeSpan(0,1,0);
             string reponse="";
@@ -162,6 +176,7 @@ namespace Boogle
                     Console.WriteLine("appuyez sur enter pour commencer !!");
                     Console.ReadLine();
                     superchrono thechrono = new superchrono(durrée);
+                    //on lance le superchrono dans un autre thread pour qu'il puisse fonctionner correctement
                     Thread thechronothread = new Thread(new ThreadStart(thechrono.start));
                     thechronothread.Start();
                     while(thechrono.isitoveryet){
@@ -198,12 +213,21 @@ namespace Boogle
                 }
             }
         }
+
+        /// <summary>
+        /// affiche le classement à la fin de la partie
+        /// </summary>
         public void leaderboard(){
             this.participants.Sort();
             foreach(Joueur player in this.participants){
                 Console.WriteLine(player.desc);
             }
         }
+
+        /// <summary>
+        /// vérifie si le nom du joueur est valide (seulement des lettres ou des chiffres)
+        /// </summary>
+        /// <returns></returns>
         static string validname(){
             string res =Console.ReadLine();
             bool unsolved= true;
