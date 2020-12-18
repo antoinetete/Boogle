@@ -5,7 +5,7 @@ namespace Boogle
 {
     public class superchrono
     {
-        private int xcursor=2;
+        private int xcursor=0;
         private int ycursor=0;
         private Stopwatch chrono = new Stopwatch();
         private TimeSpan theduration;
