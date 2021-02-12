@@ -1,82 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "/home/orca/a2/info/boogle/Boogle/Boogletests/Boogletests.csproj": {}
+    "D:\\Github\\Boogle\\BoogleTests\\Boogletests.csproj": {}
   },
   "projects": {
-    "/home/orca/a2/info/boogle/Boogle/Boogle/Boogle.csproj": {
+    "D:\\Github\\Boogle\\BoogleTests\\Boogletests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/orca/a2/info/boogle/Boogle/Boogle/Boogle.csproj",
-        "projectName": "Boogle",
-        "projectPath": "/home/orca/a2/info/boogle/Boogle/Boogle/Boogle.csproj",
-        "packagesPath": "/home/orca/.nuget/packages/",
-        "outputPath": "/home/orca/a2/info/boogle/Boogle/Boogle/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/orca/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/orca/a2/info/boogle/Boogle/Boogletests/Boogletests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/orca/a2/info/boogle/Boogle/Boogletests/Boogletests.csproj",
+        "projectUniqueName": "D:\\Github\\Boogle\\BoogleTests\\Boogletests.csproj",
         "projectName": "Boogletests",
-        "projectPath": "/home/orca/a2/info/boogle/Boogle/Boogletests/Boogletests.csproj",
-        "packagesPath": "/home/orca/.nuget/packages/",
-        "outputPath": "/home/orca/a2/info/boogle/Boogle/Boogletests/obj/",
+        "projectPath": "D:\\Github\\Boogle\\BoogleTests\\Boogletests.csproj",
+        "packagesPath": "C:\\Users\\antoi\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Boogle\\BoogleTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/home/orca/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\antoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/home/orca/a2/info/boogle/Boogle/Boogle/Boogle.csproj": {
-                "projectPath": "/home/orca/a2/info/boogle/Boogle/Boogle/Boogle.csproj"
+              "D:\\Github\\Boogle\\Boogle\\Boogle.csproj": {
+                "projectPath": "D:\\Github\\Boogle\\Boogle\\Boogle.csproj"
               }
             }
           }
@@ -122,7 +78,63 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Github\\Boogle\\Boogle\\Boogle.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Github\\Boogle\\Boogle\\Boogle.csproj",
+        "projectName": "Boogle",
+        "projectPath": "D:\\Github\\Boogle\\Boogle\\Boogle.csproj",
+        "packagesPath": "C:\\Users\\antoi\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Boogle\\Boogle\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\antoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
